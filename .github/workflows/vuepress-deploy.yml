@@ -13,5 +13,5 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.DEPLOY_SECRET }}
           TARGET_REPO: uljp/sz-docs
           TARGET_BRANCH: gh_pages
-          BUILD_SCRIPT: cd docs && yarn && yarn build
-          BUILD_DIR: src/.vuepress/dist
+          BUILD_SCRIPT: yarn && yarn docs:build
+          BUILD_DIR: docs/.vuepress/dist
