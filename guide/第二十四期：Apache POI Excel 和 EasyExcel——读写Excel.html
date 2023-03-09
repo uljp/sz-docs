@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Apache POI 和 EasyExcel | 生椰拿铁</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="https://static.uino.cn/uino_favicon_32.ico">
+    <meta name="description" content="sz docs">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <link rel="preload" href="/sz-docs/assets/css/0.styles.677476a9.css" as="style"><link rel="preload" href="/sz-docs/assets/js/app.7db088ff.js" as="script"><link rel="preload" href="/sz-docs/assets/js/2.733019b2.js" as="script"><link rel="preload" href="/sz-docs/assets/js/54.6dde35b4.js" as="script"><link rel="prefetch" href="/sz-docs/assets/js/10.23033a15.js"><link rel="prefetch" href="/sz-docs/assets/js/11.1159667a.js"><link rel="prefetch" href="/sz-docs/assets/js/12.b7682a80.js"><link rel="prefetch" href="/sz-docs/assets/js/13.b40896ae.js"><link rel="prefetch" href="/sz-docs/assets/js/14.7d6cdd2a.js"><link rel="prefetch" href="/sz-docs/assets/js/15.96809982.js"><link rel="prefetch" href="/sz-docs/assets/js/16.9183fc9e.js"><link rel="prefetch" href="/sz-docs/assets/js/17.ecc2fb02.js"><link rel="prefetch" href="/sz-docs/assets/js/18.cbb699f8.js"><link rel="prefetch" href="/sz-docs/assets/js/19.be221f77.js"><link rel="prefetch" href="/sz-docs/assets/js/20.2607d007.js"><link rel="prefetch" href="/sz-docs/assets/js/21.88cceb8e.js"><link rel="prefetch" href="/sz-docs/assets/js/22.195d0f98.js"><link rel="prefetch" href="/sz-docs/assets/js/23.5e12ff82.js"><link rel="prefetch" href="/sz-docs/assets/js/24.1bf305f2.js"><link rel="prefetch" href="/sz-docs/assets/js/25.6acd278f.js"><link rel="prefetch" href="/sz-docs/assets/js/26.1cf25fe7.js"><link rel="prefetch" href="/sz-docs/assets/js/27.45c79ed2.js"><link rel="prefetch" href="/sz-docs/assets/js/28.0b61871a.js"><link rel="prefetch" href="/sz-docs/assets/js/29.cad72530.js"><link rel="prefetch" href="/sz-docs/assets/js/3.79377ed2.js"><link rel="prefetch" href="/sz-docs/assets/js/30.579adef3.js"><link rel="prefetch" href="/sz-docs/assets/js/31.5b8d686b.js"><link rel="prefetch" href="/sz-docs/assets/js/32.cd1a7df8.js"><link rel="prefetch" href="/sz-docs/assets/js/33.08291efa.js"><link rel="prefetch" href="/sz-docs/assets/js/34.051cd83e.js"><link rel="prefetch" href="/sz-docs/assets/js/35.9226c874.js"><link rel="prefetch" href="/sz-docs/assets/js/36.786d1b02.js"><link rel="prefetch" href="/sz-docs/assets/js/37.6c82cb08.js"><link rel="prefetch" href="/sz-docs/assets/js/38.cb3a3a25.js"><link rel="prefetch" href="/sz-docs/assets/js/39.6106e297.js"><link rel="prefetch" href="/sz-docs/assets/js/4.da3ef268.js"><link rel="prefetch" href="/sz-docs/assets/js/40.c6403136.js"><link rel="prefetch" href="/sz-docs/assets/js/41.7426ccdd.js"><link rel="prefetch" href="/sz-docs/assets/js/42.dde98d37.js"><link rel="prefetch" href="/sz-docs/assets/js/43.d71415f0.js"><link rel="prefetch" href="/sz-docs/assets/js/44.6e365644.js"><link rel="prefetch" href="/sz-docs/assets/js/45.2d67f6fc.js"><link rel="prefetch" href="/sz-docs/assets/js/46.85a0827b.js"><link rel="prefetch" href="/sz-docs/assets/js/47.3314ed73.js"><link rel="prefetch" href="/sz-docs/assets/js/48.9cf9a0ad.js"><link rel="prefetch" href="/sz-docs/assets/js/49.1761cc9c.js"><link rel="prefetch" href="/sz-docs/assets/js/5.dac787d8.js"><link rel="prefetch" href="/sz-docs/assets/js/50.6a10f71e.js"><link rel="prefetch" href="/sz-docs/assets/js/51.e2c36d0f.js"><link rel="prefetch" href="/sz-docs/assets/js/52.1bd7b444.js"><link rel="prefetch" href="/sz-docs/assets/js/53.70686b59.js"><link rel="prefetch" href="/sz-docs/assets/js/55.b6e40a11.js"><link rel="prefetch" href="/sz-docs/assets/js/56.c3e28e98.js"><link rel="prefetch" href="/sz-docs/assets/js/57.574a0481.js"><link rel="prefetch" href="/sz-docs/assets/js/58.521c3bdd.js"><link rel="prefetch" href="/sz-docs/assets/js/59.857ad7b7.js"><link rel="prefetch" href="/sz-docs/assets/js/6.2d0a63f8.js"><link rel="prefetch" href="/sz-docs/assets/js/60.92b7cad7.js"><link rel="prefetch" href="/sz-docs/assets/js/61.22b06999.js"><link rel="prefetch" href="/sz-docs/assets/js/62.6e97315b.js"><link rel="prefetch" href="/sz-docs/assets/js/63.51574388.js"><link rel="prefetch" href="/sz-docs/assets/js/7.307492ca.js"><link rel="prefetch" href="/sz-docs/assets/js/8.2b132dc4.js"><link rel="prefetch" href="/sz-docs/assets/js/9.3c5a8fdb.js">
+    <link rel="stylesheet" href="/sz-docs/assets/css/0.styles.677476a9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/sz-docs/" class="home-link router-link-active"><!----> <span class="site-name">生椰拿铁</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/sz-docs/guide/" class="nav-link router-link-active">
+  Guide
+</a></div><div class="nav-item"><a href="/sz-docs/config/" class="nav-link">
+  Config
+</a></div><div class="nav-item"><a href="https://v1.vuepress.vuejs.org" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VuePress
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/sz-docs/guide/" class="nav-link router-link-active">
+  Guide
+</a></div><div class="nav-item"><a href="/sz-docs/config/" class="nav-link">
+  Config
+</a></div><div class="nav-item"><a href="https://v1.vuepress.vuejs.org" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VuePress
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>什么是Deno</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/sz-docs/guide/什么是Deno.html" class="sidebar-link">简介</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="apache-poi-和-easyexcel"><a href="#apache-poi-和-easyexcel" class="header-anchor">#</a> Apache POI 和 EasyExcel</h1> <h2 id="应用场景"><a href="#应用场景" class="header-anchor">#</a> 应用场景</h2> <p>1、将数据库中信息导出为Excel表格</p> <p>2、将Excel表格中数据录入到数据库</p> <h2 id="apache-poi"><a href="#apache-poi" class="header-anchor">#</a> Apache POI</h2> <p>Apache POI官网：https://poi.apache.org/</p> <p>百度搜索一下Apache POI的词条，专门用来对 Microsoft Office 进行读写的，我们这里只讲关于Excel的功能，也就是XSSF和HSSF这两个类</p> <p><a href="https://imgtu.com/i/T6ONcj" target="_blank" rel="noopener noreferrer"><img src="https://s4.ax1x.com/2021/12/29/T6ONcj.png" alt="T6ONcj.png"><span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://imgtu.com/i/T6Oc34" target="_blank" rel="noopener noreferrer"><img src="https://s4.ax1x.com/2021/12/29/T6Oc34.png" alt="T6Oc34.png"><span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="excel的版本"><a href="#excel的版本" class="header-anchor">#</a> Excel的版本</h2> <p>Excel分为两个版本，03版本，以及07版本，分别以xls和xlsx作为文件后缀</p> <p>xls的文件，行数上限为65536行，列数上限256列，而xlsx文件上限为1048576行，列数上限16384列</p> <h2 id="easyexcel"><a href="#easyexcel" class="header-anchor">#</a> EasyExcel</h2> <p>阿里开源的excel处理工具，简单、节约内存</p> <p>EasyExcel地址：https://github.com/alibaba/easyexcel</p> <p>Java解析、生成Excel比较有名的框架有Apache poi、jxl。但他们都存在一个严重的问题就是非常的耗内存，poi有一套SAX模式的API可以一定程度的解决一些内存溢出的问题，但POI还是有一些缺陷，比如07版Excel解压缩以及解压后存储都是在内存中完成的，内存消耗依然很大。easyexcel重写了poi对07版Excel的解析，一个3M的excel用POI sax解析依然需要100M左右内存，改用easyexcel可以降低到几M，并且再大的excel也不会出现内存溢出；03版依赖POI的sax模式，在上层做了模型转换的封装，让使用者更加简单方便</p> <p>虽然POI是目前使用最多的用来做excel解析的框架，但这个框架并不那么完美。大部分使用POI都是使用他的userModel模式。userModel的好处是上手容易使用简单，随便拷贝个代码跑一下，剩下就是写业务转换了，虽然转换也要写上百行代码，相对比较好理解。然而userModel模式最大的问题是在于非常大的内存消耗，一个几兆的文件解析要用掉上百兆的内存。现在很多应用采用这种模式，之所以还正常在跑一定是并发不大，并发上来后一定会OOM或者频繁的full gc。</p> <h2 id="核心原理"><a href="#核心原理" class="header-anchor">#</a> 核心原理</h2> <p>写有大量数据的xlsx文件时，POI为我们提供了SXSSFWorkBook类来处理，这个类的处理机制是当内存中的数据条数达到一个极限数量的时候就flush这部分数据，再依次处理余下的数据，这个在大多数场景能够满足需求。</p> <p>读有大量数据的文件时，使用WorkBook处理就不行了，因为POI对文件是先将文件中的cell读入内存，生成一个树的结构（针对Excel中的每个sheet，使用TreeMap存储sheet中的行）。如果数据量比较大，则同样会产生java.lang.OutOfMemoryError: Java heap space错误。POI官方推荐使用“XSSF and SAX（event API）”方式来解决。</p> <p>分析清楚POI后要解决OOM有3个关键。</p> <h3 id="_1、文件解压文件读取通过文件形式"><a href="#_1、文件解压文件读取通过文件形式" class="header-anchor">#</a> 1、文件解压文件读取通过文件形式</h3> <p><a href="https://imgtu.com/i/Tjm6Yt" target="_blank" rel="noopener noreferrer"><img src="https://s4.ax1x.com/2022/01/05/Tjm6Yt.png" alt="Tjm6Yt.png"><span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h3 id="_2、避免将全部全部数据一次加载到内存"><a href="#_2、避免将全部全部数据一次加载到内存" class="header-anchor">#</a> 2、避免将全部全部数据一次加载到内存</h3> <p>采用sax模式一行一行解析，并将一行的解析结果以观察者的模式通知处理。</p> <p><a href="https://imgtu.com/i/TjmLlT" target="_blank" rel="noopener noreferrer"><img src="https://s4.ax1x.com/2022/01/05/TjmLlT.png" alt="TjmLlT.png"><span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h3 id="_3、抛弃不重要的数据"><a href="#_3、抛弃不重要的数据" class="header-anchor">#</a> 3、抛弃不重要的数据</h3> <p>Excel解析时候会包含样式，字体，宽度等数据，但这些数据是我们不关心的，如果将这部分数据抛弃可以大大降低内存使用。Excel中数据如下Style占了相当大的空间。</p> <h3 id="注意"><a href="#注意" class="header-anchor">#</a> 注意：</h3> <p>因为EasyExcel做了优化，所以Excel的读写，没有任何关于样式的操作</p> <h2 id="jexcelapi-jxl"><a href="#jexcelapi-jxl" class="header-anchor">#</a> JExcelApi（JXL）</h2> <p>这个已经不更新了，作为了解吧</p> <p>JXL官网：http://jexcelapi.sourceforge.net/</p> <h2 id="poi-excel写"><a href="#poi-excel写" class="header-anchor">#</a> POI-Excel写</h2> <p>写一下Maven的pom依赖</p> <h3 id="pom依赖"><a href="#pom依赖" class="header-anchor">#</a> pom依赖</h3> <div class="language-xml extra-class"><pre class="language-xml"><code>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!--  xls(03)  --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.poi<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>poi<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.9<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!--  xlsx(07)  --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.poi<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>poi-ooxml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.9<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!--  日期格式化工具  --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>joda-time<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>joda-time<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.10.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!--  test  --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>junit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>4.12<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h3 id="java中的对象"><a href="#java中的对象" class="header-anchor">#</a> java中的对象</h3> <p>java是面向对象的编程语言，所以Excel中进行的操作都可以用对象来控制</p> <p>主要有：工作簿、工作表、行、列、单元格五个对象</p> <p><a href="https://imgtu.com/i/TcH6Dx" target="_blank" rel="noopener noreferrer"><img src="https://s4.ax1x.com/2021/12/29/TcH6Dx.png" alt="TcH6Dx.png"><span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h3 id="workbook"><a href="#workbook" class="header-anchor">#</a> Workbook</h3> <p>Workbook是POI提供的，它有有三个实现类</p> <p>HSSF、XSSF、SXSSF，分别对应xls的文件操作，xlsx文件的操作，以及读xlsx文件的优化操作</p> <p><a href="https://imgtu.com/i/TcLP4U" target="_blank" rel="noopener noreferrer"><img src="https://s4.ax1x.com/2021/12/29/TcLP4U.png" alt="TcLP4U.png"><span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h3 id="导入少量数据"><a href="#导入少量数据" class="header-anchor">#</a> 导入少量数据</h3> <p>我们先入门一下如何写入数据</p> <h4 id="_03xls"><a href="#_03xls" class="header-anchor">#</a> 03xls</h4> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token class-name">String</span> <span class="token constant">PATH</span> <span class="token operator">=</span> <span class="token string">&quot;D:\\Ancestors\\ResourceWeb\\excel\\&quot;</span><span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testWrite03</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//创建一个工作簿</span>
+        <span class="token class-name">Workbook</span> workbook <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HSSFWorkbook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//创建工作表</span>
+        <span class="token class-name">Sheet</span> sheet <span class="token operator">=</span> workbook<span class="token punctuation">.</span><span class="token function">createSheet</span><span class="token punctuation">(</span><span class="token string">&quot;uino小学统计表&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//创建行(第一行)</span>
+        <span class="token class-name">Row</span> row1 <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">createRow</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//创建第一个单元格(0,0)</span>
+        <span class="token class-name">Cell</span> cell1 <span class="token operator">=</span> row1<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cell1<span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span><span class="token string">&quot;姓名&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//创建第二个单元格(0,1)</span>
+        <span class="token class-name">Cell</span> cell2 <span class="token operator">=</span> row1<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cell2<span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span><span class="token string">&quot;学分&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//创建行(第二行)</span>
+        <span class="token class-name">Row</span> row2 <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">createRow</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Cell</span> cell3 <span class="token operator">=</span> row2<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//(1,0)</span>
+        cell3<span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span><span class="token string">&quot;李泽辉&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Cell</span> cell4 <span class="token operator">=</span> row2<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//(1,1)</span>
+        cell4<span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span><span class="token string">&quot;40&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//生成一张表</span>
+        <span class="token class-name">FileOutputStream</span> fileOutputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token constant">PATH</span><span class="token operator">+</span><span class="token string">&quot;uino小学统计表-03输出.xls&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//写入</span>
+        workbook<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>fileOutputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//关闭</span>
+        fileOutputStream<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><h4 id="_07xlsx"><a href="#_07xlsx" class="header-anchor">#</a> 07xlsx</h4> <p>只需要把输出流文件的文件后缀改一下，然后把<code>HSSFWorkbook()</code>改为<code>XSSFWorkbook()</code>就可以了</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">/**
+     * 07写入
+     * @throws IOException
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testWrite07</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//创建一个工作簿</span>
+        <span class="token class-name">Workbook</span> workbook <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XSSFWorkbook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//创建工作表</span>
+        <span class="token class-name">Sheet</span> sheet <span class="token operator">=</span> workbook<span class="token punctuation">.</span><span class="token function">createSheet</span><span class="token punctuation">(</span><span class="token string">&quot;uino小学统计表&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//创建行(第一行)</span>
+        <span class="token class-name">Row</span> row1 <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">createRow</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//创建第一个单元格(0,0)</span>
+        <span class="token class-name">Cell</span> cell1 <span class="token operator">=</span> row1<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cell1<span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span><span class="token string">&quot;姓名&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//创建第二个单元格(0,1)</span>
+        <span class="token class-name">Cell</span> cell2 <span class="token operator">=</span> row1<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cell2<span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span><span class="token string">&quot;学分&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//创建行(第二行)</span>
+        <span class="token class-name">Row</span> row2 <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">createRow</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Cell</span> cell3 <span class="token operator">=</span> row2<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//(1,0)</span>
+        cell3<span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span><span class="token string">&quot;李泽辉&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Cell</span> cell4 <span class="token operator">=</span> row2<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//(1,1)</span>
+        cell4<span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span><span class="token string">&quot;40&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//生成一张表</span>
+        <span class="token class-name">FileOutputStream</span> fileOutputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token constant">PATH</span><span class="token operator">+</span><span class="token string">&quot;uino小学统计表-07输出.xlsx&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//写入</span>
+        workbook<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>fileOutputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//关闭</span>
+        fileOutputStream<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><h3 id="数据批量导入"><a href="#数据批量导入" class="header-anchor">#</a> 数据批量导入</h3> <h4 id="_03xls-hssf"><a href="#_03xls-hssf" class="header-anchor">#</a> 03xls（HSSF）</h4> <p>上面是基本的，现在我们用for循环来写入数据</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span>  <span class="token keyword">void</span>  <span class="token function">testWrite03BigData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//初始时间</span>
+        <span class="token keyword">long</span> begin <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//创建单元簿</span>
+        <span class="token class-name">Workbook</span> workbook <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HSSFWorkbook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//创建表</span>
+        <span class="token class-name">Sheet</span> sheet <span class="token operator">=</span> workbook<span class="token punctuation">.</span><span class="token function">createSheet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//生成数据</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> rowNum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> rowNum <span class="token operator">&lt;</span> <span class="token number">65536</span><span class="token punctuation">;</span> rowNum<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token class-name">Row</span> row <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">createRow</span><span class="token punctuation">(</span>rowNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> cellNum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> cellNum <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> cellNum<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token class-name">Cell</span> cell <span class="token operator">=</span> row<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span>cellNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                cell<span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span>cellNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">//生成文件</span>
+        <span class="token class-name">FileOutputStream</span> fileOutputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token constant">PATH</span><span class="token operator">+</span><span class="token string">&quot;03大数据输入.xls&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        workbook<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>fileOutputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fileOutputStream<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//结束时间</span>
+        <span class="token keyword">long</span> end <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//数据插入时间</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span><span class="token punctuation">(</span>end <span class="token operator">-</span> begin<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><h4 id="_07xlsx-xssf"><a href="#_07xlsx-xssf" class="header-anchor">#</a> 07xlsx（XSSF）</h4> <p>我们在xlsx文件尝试写入10w条数据</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">/**
+     * 07大数据写入
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span>  <span class="token keyword">void</span>  <span class="token function">testWrite07BigData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//初始时间</span>
+        <span class="token keyword">long</span> begin <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//创建单元簿</span>
+        <span class="token class-name">Workbook</span> workbook <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XSSFWorkbook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//创建表</span>
+        <span class="token class-name">Sheet</span> sheet <span class="token operator">=</span> workbook<span class="token punctuation">.</span><span class="token function">createSheet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//生成数据</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> rowNum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> rowNum <span class="token operator">&lt;</span> <span class="token number">100000</span><span class="token punctuation">;</span> rowNum<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token class-name">Row</span> row <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">createRow</span><span class="token punctuation">(</span>rowNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> cellNum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> cellNum <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> cellNum<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token class-name">Cell</span> cell <span class="token operator">=</span> row<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span>cellNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                cell<span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span>cellNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">//生成文件</span>
+        <span class="token class-name">FileOutputStream</span> fileOutputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token constant">PATH</span><span class="token operator">+</span><span class="token string">&quot;07大数据输入.xlsx&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        workbook<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>fileOutputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fileOutputStream<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//结束时间</span>
+        <span class="token keyword">long</span> end <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//数据插入时间</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span><span class="token punctuation">(</span>end <span class="token operator">-</span> begin<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>测试完时间约为7s</p> <h4 id="_07xlsx-sxssf"><a href="#_07xlsx-sxssf" class="header-anchor">#</a> 07xlsx（SXSSF）</h4> <p>内存占用比XSSF少，速度快</p> <p>会产生临时文件</p> <p>原理：默认100条（可以通过new SXSSFWorkbook(数量)自定义上限）记录保存到内存，超过这个数量，把这100条放入临时文件，然后临时文件转换为xlsx</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">/**
+     * 07大数据写入SXSSF
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span>  <span class="token keyword">void</span>  <span class="token function">testWrite07BigDataS</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//初始时间</span>
+        <span class="token keyword">long</span> begin <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//创建单元簿</span>
+        <span class="token class-name">Workbook</span> workbook <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SXSSFWorkbook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//创建表</span>
+        <span class="token class-name">Sheet</span> sheet <span class="token operator">=</span> workbook<span class="token punctuation">.</span><span class="token function">createSheet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//生成数据</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> rowNum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> rowNum <span class="token operator">&lt;</span> <span class="token number">100000</span><span class="token punctuation">;</span> rowNum<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token class-name">Row</span> row <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">createRow</span><span class="token punctuation">(</span>rowNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> cellNum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> cellNum <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> cellNum<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token class-name">Cell</span> cell <span class="token operator">=</span> row<span class="token punctuation">.</span><span class="token function">createCell</span><span class="token punctuation">(</span>cellNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                cell<span class="token punctuation">.</span><span class="token function">setCellValue</span><span class="token punctuation">(</span>cellNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">//生成文件</span>
+        <span class="token class-name">FileOutputStream</span> fileOutputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token constant">PATH</span><span class="token operator">+</span><span class="token string">&quot;07大数据输入S.xlsx&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        workbook<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>fileOutputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fileOutputStream<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//会生成临时文件,清掉</span>
+        <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">SXSSFWorkbook</span><span class="token punctuation">)</span>workbook<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">dispose</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//结束时间</span>
+        <span class="token keyword">long</span> end <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//数据插入时间</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span><span class="token punctuation">(</span>end <span class="token operator">-</span> begin<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>POI提供了SXSSF作为写xlsx文件的优化类，我们再次尝试写入10w条数据</p> <p>约为2s</p> <h2 id="poi-excel读"><a href="#poi-excel读" class="header-anchor">#</a> POI-Excel读</h2> <p>注意单元格类型：获取字符串和数字是两个方法</p> <h3 id="_03xls-hssf-2"><a href="#_03xls-hssf-2" class="header-anchor">#</a> 03xls（HSSF）</h3> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">/**
+     * 03读取
+     * @throws IOException
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testRead03</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+
+        <span class="token comment">//获取文件流</span>
+        <span class="token class-name">FileInputStream</span> fileInputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token constant">PATH</span><span class="token operator">+</span><span class="token string">&quot;uino小学统计表-03输出.xls&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到工作簿</span>
+        <span class="token class-name">Workbook</span> workbook <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HSSFWorkbook</span><span class="token punctuation">(</span>fileInputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到下表0的工作表</span>
+        <span class="token class-name">Sheet</span> sheet <span class="token operator">=</span> workbook<span class="token punctuation">.</span><span class="token function">getSheetAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到行</span>
+        <span class="token class-name">Row</span> row <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">getRow</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到列</span>
+        <span class="token class-name">Cell</span> cell <span class="token operator">=</span> row<span class="token punctuation">.</span><span class="token function">getCell</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>cell<span class="token punctuation">.</span><span class="token function">getStringCellValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">////        注意类型</span>
+<span class="token comment">//        Row row = sheet.getRow(1);</span>
+<span class="token comment">//        Cell cell = row.getCell(1);</span>
+<span class="token comment">//        System.out.println(cell.getNumericCellValue());</span>
+
+        <span class="token comment">//关闭流</span>
+        fileInputStream<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><h3 id="_07xlsx-xssf-2"><a href="#_07xlsx-xssf-2" class="header-anchor">#</a> 07xlsx（XSSF）</h3> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">/**
+     * 07读取
+     * @throws IOException
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testRead07</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+
+        <span class="token comment">//获取文件流</span>
+        <span class="token class-name">FileInputStream</span> fileInputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token constant">PATH</span><span class="token operator">+</span><span class="token string">&quot;uino小学统计表-07输出.xlsx&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到工作簿</span>
+        <span class="token class-name">Workbook</span> workbook <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XSSFWorkbook</span><span class="token punctuation">(</span>fileInputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到下表0的工作表</span>
+        <span class="token class-name">Sheet</span> sheet <span class="token operator">=</span> workbook<span class="token punctuation">.</span><span class="token function">getSheetAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到行</span>
+        <span class="token class-name">Row</span> row <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">getRow</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到列</span>
+        <span class="token class-name">Cell</span> cell <span class="token operator">=</span> row<span class="token punctuation">.</span><span class="token function">getCell</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>cell<span class="token punctuation">.</span><span class="token function">getStringCellValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">////        注意类型</span>
+<span class="token comment">//        Row row = sheet.getRow(1);</span>
+<span class="token comment">//        Cell cell = row.getCell(1);</span>
+<span class="token comment">//        System.out.println(cell.getNumericCellValue());</span>
+
+        <span class="token comment">//关闭流</span>
+        fileInputStream<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><h3 id="例子"><a href="#例子" class="header-anchor">#</a> 例子</h3> <p>我们来尝试读取一下这个文件</p> <p><a href="https://imgtu.com/i/Tj1NEF" target="_blank" rel="noopener noreferrer"><img src="https://s4.ax1x.com/2022/01/05/Tj1NEF.png" alt="Tj1NEF.png"><span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">/**
+     * 明细表读取
+     * @throws IOException
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testReadType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+
+        <span class="token comment">//获取文件流</span>
+        <span class="token class-name">FileInputStream</span> fileInputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token constant">PATH</span><span class="token operator">+</span><span class="token string">&quot;明细表.xls&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到工作簿</span>
+        <span class="token class-name">Workbook</span> workbook <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HSSFWorkbook</span><span class="token punctuation">(</span>fileInputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到下表0的工作表</span>
+        <span class="token class-name">Sheet</span> sheet <span class="token operator">=</span> workbook<span class="token punctuation">.</span><span class="token function">getSheetAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//获取标题</span>
+        <span class="token class-name">Row</span> rowTitle <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">getRow</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>rowTitle <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment">//拿到标题行的个数</span>
+            <span class="token keyword">int</span> cellCount <span class="token operator">=</span> rowTitle<span class="token punctuation">.</span><span class="token function">getPhysicalNumberOfCells</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> cellNum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> cellNum <span class="token operator">&lt;</span> cellCount<span class="token punctuation">;</span> cellNum<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token comment">//拿到每一个单元格</span>
+                <span class="token class-name">Cell</span> cell <span class="token operator">=</span> rowTitle<span class="token punctuation">.</span><span class="token function">getCell</span><span class="token punctuation">(</span>cellNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>cell <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token comment">//单元格的值</span>
+                    <span class="token class-name">String</span> cellValue <span class="token operator">=</span> cell<span class="token punctuation">.</span><span class="token function">getStringCellValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>cellValue<span class="token operator">+</span><span class="token string">&quot; | &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//获取除了标题的数据</span>
+        <span class="token comment">//行数</span>
+        <span class="token keyword">int</span> rowCount <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">getPhysicalNumberOfRows</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> rowNum <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> rowNum <span class="token operator">&lt;</span> rowCount<span class="token punctuation">;</span> rowNum<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token comment">//拿到行数据</span>
+            <span class="token class-name">Row</span> rowData <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">getRow</span><span class="token punctuation">(</span>rowNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>rowData <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token comment">//单元格数量</span>
+                <span class="token keyword">int</span> cellCount <span class="token operator">=</span> rowTitle<span class="token punctuation">.</span><span class="token function">getPhysicalNumberOfCells</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> cellNum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> cellNum <span class="token operator">&lt;</span> cellCount<span class="token punctuation">;</span> cellNum<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token class-name">Cell</span> cell <span class="token operator">=</span> rowData<span class="token punctuation">.</span><span class="token function">getCell</span><span class="token punctuation">(</span>cellNum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token comment">//匹配数据类型</span>
+                    <span class="token keyword">try</span><span class="token punctuation">{</span> <span class="token comment">//单元格数据类型</span>
+                        <span class="token keyword">int</span> cellType <span class="token operator">=</span> cell<span class="token punctuation">.</span><span class="token function">getCellType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token class-name">String</span> cellValue <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+                        <span class="token keyword">switch</span> <span class="token punctuation">(</span>cellType<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                            <span class="token keyword">case</span> <span class="token class-name">HSSFCell</span><span class="token punctuation">.</span><span class="token constant">CELL_TYPE_STRING</span><span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>字符串
+                                cellValue <span class="token operator">=</span> cell<span class="token punctuation">.</span><span class="token function">getStringCellValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <span class="token keyword">break</span><span class="token punctuation">;</span>
+                            <span class="token keyword">case</span> <span class="token class-name">HSSFCell</span><span class="token punctuation">.</span><span class="token constant">CELL_TYPE_BOOLEAN</span><span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>布尔
+                                cellValue <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>cell<span class="token punctuation">.</span><span class="token function">getBooleanCellValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <span class="token keyword">break</span><span class="token punctuation">;</span>
+                            <span class="token keyword">case</span> <span class="token class-name">HSSFCell</span><span class="token punctuation">.</span><span class="token constant">CELL_TYPE_BLANK</span><span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>空
+                                cellValue <span class="token operator">=</span> <span class="token string">&quot;NULL&quot;</span><span class="token punctuation">;</span>
+                                <span class="token keyword">break</span><span class="token punctuation">;</span>
+                            <span class="token keyword">case</span> <span class="token class-name">HSSFCell</span><span class="token punctuation">.</span><span class="token constant">CELL_TYPE_NUMERIC</span><span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>数字（日期、普通数字）
+                                <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token class-name">HSSFDateUtil</span><span class="token punctuation">.</span><span class="token function">isCellDateFormatted</span><span class="token punctuation">(</span>cell<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//日期</span>
+                                    <span class="token class-name">Date</span> date <span class="token operator">=</span> cell<span class="token punctuation">.</span><span class="token function">getDateCellValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                    cellValue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DateTime</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token string">&quot;yyyy-MM-dd&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+                                    cell<span class="token punctuation">.</span><span class="token function">setCellType</span><span class="token punctuation">(</span><span class="token class-name">HSSFCell</span><span class="token punctuation">.</span><span class="token constant">CELL_TYPE_STRING</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                    cellValue <span class="token operator">=</span> cell<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <span class="token punctuation">}</span>
+                                <span class="token keyword">break</span><span class="token punctuation">;</span>
+                            <span class="token keyword">case</span> <span class="token class-name">HSSFCell</span><span class="token punctuation">.</span><span class="token constant">CELL_TYPE_ERROR</span><span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>错误
+                                cellValue <span class="token operator">=</span> <span class="token string">&quot;ERROR&quot;</span><span class="token punctuation">;</span>
+                                <span class="token keyword">break</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span>
+                        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>cellValue<span class="token operator">+</span><span class="token string">&quot; | &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span><span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">&quot;NULL&quot;</span><span class="token operator">+</span><span class="token string">&quot; | &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+
+
+                <span class="token punctuation">}</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+</code></pre></div><h2 id="计算公式"><a href="#计算公式" class="header-anchor">#</a> 计算公式</h2> <p><a href="https://imgtu.com/i/Tj3GRA" target="_blank" rel="noopener noreferrer"><img src="https://s4.ax1x.com/2022/01/05/Tj3GRA.png" alt="Tj3GRA.png"><span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>直接获取单元格，会显示公式</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">/**
+     * 计算公式
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span>  <span class="token function">testFormula</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//获取文件流</span>
+        <span class="token class-name">FileInputStream</span> fileInputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token constant">PATH</span><span class="token operator">+</span><span class="token string">&quot;公式表.xls&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到工作簿</span>
+        <span class="token class-name">Workbook</span> workbook <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HSSFWorkbook</span><span class="token punctuation">(</span>fileInputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到下表0的工作表</span>
+        <span class="token class-name">Sheet</span> sheet <span class="token operator">=</span> workbook<span class="token punctuation">.</span><span class="token function">getSheetAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到行</span>
+        <span class="token class-name">Row</span> row <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">getRow</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到列</span>
+        <span class="token class-name">Cell</span> cell <span class="token operator">=</span> row<span class="token punctuation">.</span><span class="token function">getCell</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>cell<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>cell<span class="token punctuation">.</span><span class="token function">getCellType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>我们需要公式转换为数值显示</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">/**
+     * 计算公式
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span>  <span class="token function">testFormula</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+        <span class="token comment">//获取文件流</span>
+        <span class="token class-name">FileInputStream</span> fileInputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token constant">PATH</span><span class="token operator">+</span><span class="token string">&quot;公式表.xls&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到工作簿</span>
+        <span class="token class-name">Workbook</span> workbook <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HSSFWorkbook</span><span class="token punctuation">(</span>fileInputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到下表0的工作表</span>
+        <span class="token class-name">Sheet</span> sheet <span class="token operator">=</span> workbook<span class="token punctuation">.</span><span class="token function">getSheetAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到行</span>
+        <span class="token class-name">Row</span> row <span class="token operator">=</span> sheet<span class="token punctuation">.</span><span class="token function">getRow</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到列</span>
+        <span class="token class-name">Cell</span> cell <span class="token operator">=</span> row<span class="token punctuation">.</span><span class="token function">getCell</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">//拿到计算公式</span>
+        <span class="token class-name">FormulaEvaluator</span> formulaEvaluator <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HSSFFormulaEvaluator</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">HSSFWorkbook</span><span class="token punctuation">)</span>workbook<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">int</span> cellType <span class="token operator">=</span> cell<span class="token punctuation">.</span><span class="token function">getCellType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>cellType<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">case</span> <span class="token class-name">Cell</span><span class="token punctuation">.</span><span class="token constant">CELL_TYPE_FORMULA</span><span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>公式
+                <span class="token comment">//计算</span>
+                <span class="token class-name">CellValue</span> evaluate <span class="token operator">=</span> formulaEvaluator<span class="token punctuation">.</span><span class="token function">evaluate</span><span class="token punctuation">(</span>cell<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>evaluate<span class="token punctuation">.</span><span class="token function">formatAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><h2 id="easyexcel-2"><a href="#easyexcel-2" class="header-anchor">#</a> EasyExcel</h2> <p>导入Maven依赖</p> <h3 id="pom-xml"><a href="#pom-xml" class="header-anchor">#</a> pom.xml</h3> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token generics"><span class="token punctuation">&lt;</span>dependencies<span class="token punctuation">&gt;</span></span>
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>  <span class="token class-name">EasyExcel</span>  <span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>com<span class="token punctuation">.</span>alibaba<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>easyexcel<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">3.0</span><span class="token number">.5</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>poi<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>poi<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">4.1</span><span class="token number">.2</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>poi<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>poi<span class="token operator">-</span>ooxml<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">4.1</span><span class="token number">.2</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>poi<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>poi<span class="token operator">-</span>ooxml<span class="token operator">-</span>schemas<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">4.1</span><span class="token number">.2</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>commons<span class="token operator">-</span>csv<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">1.8</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>cglib<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>cglib<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">3.3</span><span class="token number">.0</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>slf4j<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>slf4j<span class="token operator">-</span>api<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">1.7</span><span class="token number">.32</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>ehcache<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>ehcache<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">3.8</span><span class="token number">.1</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>projectlombok<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>lombok<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">1.18</span><span class="token number">.20</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>scope<span class="token punctuation">&gt;</span></span>provided<span class="token operator">&lt;</span><span class="token operator">/</span>scope<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+
+        <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>test<span class="token operator">--</span><span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>ch<span class="token punctuation">.</span>qos<span class="token punctuation">.</span>logback<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>logback<span class="token operator">-</span>classic<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">1.2</span><span class="token number">.5</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>scope<span class="token punctuation">&gt;</span></span>test<span class="token operator">&lt;</span><span class="token operator">/</span>scope<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>com<span class="token punctuation">.</span>alibaba<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>fastjson<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">1.2</span><span class="token number">.78</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>scope<span class="token punctuation">&gt;</span></span>test<span class="token operator">&lt;</span><span class="token operator">/</span>scope<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>spring<span class="token operator">-</span>boot<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">2.5</span><span class="token number">.4</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>scope<span class="token punctuation">&gt;</span></span>test<span class="token operator">&lt;</span><span class="token operator">/</span>scope<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>spring<span class="token operator">-</span>boot<span class="token operator">-</span>starter<span class="token operator">-</span>web<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">2.5</span><span class="token number">.4</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>scope<span class="token punctuation">&gt;</span></span>test<span class="token operator">&lt;</span><span class="token operator">/</span>scope<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>junit<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>junit<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">4.13</span><span class="token number">.2</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>scope<span class="token punctuation">&gt;</span></span>test<span class="token operator">&lt;</span><span class="token operator">/</span>scope<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>junit<span class="token operator">-</span>jupiter<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token constant">RELEASE</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+            <span class="token generics"><span class="token punctuation">&lt;</span>scope<span class="token punctuation">&gt;</span></span>compile<span class="token operator">&lt;</span><span class="token operator">/</span>scope<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>dependencies<span class="token operator">&gt;</span>
+</code></pre></div><h3 id="写入"><a href="#写入" class="header-anchor">#</a> 写入</h3> <h4 id="dao"><a href="#dao" class="header-anchor">#</a> Dao</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>uino<span class="token punctuation">.</span>easyExcel</span><span class="token punctuation">;</span>
+
+
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>excel<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">ExcelIgnore</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>excel<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">ExcelProperty</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">Data</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">EqualsAndHashCode</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Date</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@EqualsAndHashCode</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DemoData</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@ExcelProperty</span><span class="token punctuation">(</span><span class="token string">&quot;字符串标题&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> string<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@ExcelProperty</span><span class="token punctuation">(</span><span class="token string">&quot;日期标题&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">Date</span> date<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@ExcelProperty</span><span class="token punctuation">(</span><span class="token string">&quot;数字标题&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">Double</span> doubleData<span class="token punctuation">;</span>
+    <span class="token comment">/**
+     * 忽略这个字段
+     */</span>
+    <span class="token annotation punctuation">@ExcelIgnore</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> ignore<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="easytest-java"><a href="#easytest-java" class="header-anchor">#</a> EasyTest.java</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>uino<span class="token punctuation">.</span>easyExcel</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>excel<span class="token punctuation">.</span></span><span class="token class-name">EasyExcel</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>excel<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">ListUtils</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token punctuation">.</span>api<span class="token punctuation">.</span></span><span class="token class-name">Test</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Date</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EasyTest</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * 输出文件路径
+     */</span>
+    <span class="token class-name">String</span> <span class="token constant">PATH</span> <span class="token operator">=</span> <span class="token string">&quot;D:\\Ancestors\\ResourceWeb\\excel\\&quot;</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">DemoData</span><span class="token punctuation">&gt;</span></span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">DemoData</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token class-name">ListUtils</span><span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">DemoData</span> data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DemoData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            data<span class="token punctuation">.</span><span class="token function">setString</span><span class="token punctuation">(</span><span class="token string">&quot;字符串&quot;</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            data<span class="token punctuation">.</span><span class="token function">setDate</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            data<span class="token punctuation">.</span><span class="token function">setDoubleData</span><span class="token punctuation">(</span><span class="token number">0.56</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> list<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * 最简单的写
+     * &lt;p&gt;
+     * 1. 创建excel对应的实体对象 参照{@link DemoData}
+     * &lt;p&gt;
+     * 2. 直接写即可
+     */</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">simpleWrite</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">String</span> fileName <span class="token operator">=</span> <span class="token constant">PATH</span> <span class="token operator">+</span><span class="token string">&quot;EasyTest.xlsx&quot;</span><span class="token punctuation">;</span>
+        <span class="token class-name">EasyExcel</span><span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>fileName<span class="token punctuation">,</span> <span class="token class-name">DemoData</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sheet</span><span class="token punctuation">(</span><span class="token string">&quot;模板&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">doWrite</span><span class="token punctuation">(</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="读取"><a href="#读取" class="header-anchor">#</a> 读取</h3> <h4 id="持久化操作"><a href="#持久化操作" class="header-anchor">#</a> 持久化操作</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>uino<span class="token punctuation">.</span>easyExcel<span class="token punctuation">.</span>read</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>uino<span class="token punctuation">.</span>easyExcel<span class="token punctuation">.</span>write<span class="token punctuation">.</span></span><span class="token class-name">DemoData</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * 假设这个是你的DAO存储。当然还要这个类让spring管理，当然你不用需要存储，也不需要这个类。
+ **/</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DemoDAO</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">DemoData</span><span class="token punctuation">&gt;</span></span> list<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 如果是mybatis,尽量别直接调用多次insert,自己写一个mapper里面新增一个方法batchInsert,所有数据一次性插入</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><h4 id="监听器"><a href="#监听器" class="header-anchor">#</a> 监听器</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>uino<span class="token punctuation">.</span>easyExcel<span class="token punctuation">.</span>read</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>excel<span class="token punctuation">.</span>context<span class="token punctuation">.</span></span><span class="token class-name">AnalysisContext</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>excel<span class="token punctuation">.</span>read<span class="token punctuation">.</span>listener<span class="token punctuation">.</span></span><span class="token class-name">ReadListener</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>excel<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">ListUtils</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>fastjson<span class="token punctuation">.</span></span><span class="token class-name">JSON</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>uino<span class="token punctuation">.</span>easyExcel<span class="token punctuation">.</span>write<span class="token punctuation">.</span></span><span class="token class-name">DemoData</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">// 有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去</span>
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DemoDataListener</span> <span class="token keyword">implements</span> <span class="token class-name">ReadListener</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">DemoData</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * 每隔5条存储数据库，实际使用中可以100条，然后清理list ，方便内存回收
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> <span class="token constant">BATCH_COUNT</span> <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+    <span class="token comment">/**
+     * 缓存的数据
+     */</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">DemoData</span><span class="token punctuation">&gt;</span></span> cachedDataList <span class="token operator">=</span> <span class="token class-name">ListUtils</span><span class="token punctuation">.</span><span class="token function">newArrayListWithExpectedSize</span><span class="token punctuation">(</span><span class="token constant">BATCH_COUNT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/**
+     * 假设这个是一个DAO，当然有业务逻辑这个也可以是一个service。当然如果不用存储这个对象没用。
+     */</span>
+    <span class="token keyword">private</span> <span class="token class-name">DemoDAO</span> demoDAO<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">DemoDataListener</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 这里是demo，所以随便new一个。实际使用如果到了spring,请使用下面的有参构造函数</span>
+        demoDAO <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DemoDAO</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * 如果使用了spring,请使用这个构造方法。每次创建Listener的时候需要把spring管理的类传进来
+     *
+     * @param demoDAO
+     */</span>
+    <span class="token keyword">public</span> <span class="token class-name">DemoDataListener</span><span class="token punctuation">(</span><span class="token class-name">DemoDAO</span> demoDAO<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>demoDAO <span class="token operator">=</span> demoDAO<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * 这个每一条数据解析都会来调用
+     *
+     * @param data    one row value. Is is same as {@link AnalysisContext#readRowHolder()}
+     * @param context
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">invoke</span><span class="token punctuation">(</span><span class="token class-name">DemoData</span> data<span class="token punctuation">,</span> <span class="token class-name">AnalysisContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&quot;解析到一条数据:{}&quot;</span><span class="token punctuation">,</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cachedDataList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 达到BATCH_COUNT了，需要去存储一次数据库，防止数据几万条数据在内存，容易OOM</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cachedDataList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token constant">BATCH_COUNT</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">saveData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 存储完成清理 list</span>
+            cachedDataList <span class="token operator">=</span> <span class="token class-name">ListUtils</span><span class="token punctuation">.</span><span class="token function">newArrayListWithExpectedSize</span><span class="token punctuation">(</span><span class="token constant">BATCH_COUNT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * 所有数据解析完成了 都会来调用
+     *
+     * @param context
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doAfterAllAnalysed</span><span class="token punctuation">(</span><span class="token class-name">AnalysisContext</span> context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 这里也要保存数据，确保最后遗留的数据也存储到数据库</span>
+        <span class="token function">saveData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&quot;所有数据解析完成！&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * 加上存储数据库
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">saveData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&quot;{}条数据，开始存储数据库！&quot;</span><span class="token punctuation">,</span> cachedDataList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        demoDAO<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>cachedDataList<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">&quot;存储数据库成功！&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="测试"><a href="#测试" class="header-anchor">#</a> 测试</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>uino<span class="token punctuation">.</span>easyExcel<span class="token punctuation">.</span>read</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>excel<span class="token punctuation">.</span></span><span class="token class-name">EasyExcel</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>uino<span class="token punctuation">.</span>easyExcel<span class="token punctuation">.</span>write<span class="token punctuation">.</span></span><span class="token class-name">DemoData</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token punctuation">.</span>api<span class="token punctuation">.</span></span><span class="token class-name">Test</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EasyTest2</span> <span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * 输出文件路径
+     */</span>
+    <span class="token class-name">String</span> <span class="token constant">PATH</span> <span class="token operator">=</span> <span class="token string">&quot;D:\\Ancestors\\ResourceWeb\\excel\\&quot;</span><span class="token punctuation">;</span>
+    <span class="token comment">// 写法1：JDK8+ ,不用额外写一个DemoDataListener</span>
+    <span class="token comment">// since: 3.0.0-beta1</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">simpleRead</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">String</span> fileName <span class="token operator">=</span> <span class="token constant">PATH</span> <span class="token operator">+</span> <span class="token string">&quot;EasyTest.xlsx&quot;</span><span class="token punctuation">;</span>
+
+        <span class="token class-name">EasyExcel</span><span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>fileName<span class="token punctuation">,</span> <span class="token class-name">DemoData</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">DemoDataListener</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sheet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">doRead</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/sz-docs/assets/js/app.7db088ff.js" defer></script><script src="/sz-docs/assets/js/2.733019b2.js" defer></script><script src="/sz-docs/assets/js/54.6dde35b4.js" defer></script>
+  </body>
+</html>

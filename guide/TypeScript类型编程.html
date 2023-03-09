@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>TypeScript的类型系统 | 生椰拿铁</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="https://static.uino.cn/uino_favicon_32.ico">
+    <meta name="description" content="sz docs">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <link rel="preload" href="/sz-docs/assets/css/0.styles.677476a9.css" as="style"><link rel="preload" href="/sz-docs/assets/js/app.7db088ff.js" as="script"><link rel="preload" href="/sz-docs/assets/js/2.733019b2.js" as="script"><link rel="preload" href="/sz-docs/assets/js/22.195d0f98.js" as="script"><link rel="prefetch" href="/sz-docs/assets/js/10.23033a15.js"><link rel="prefetch" href="/sz-docs/assets/js/11.1159667a.js"><link rel="prefetch" href="/sz-docs/assets/js/12.b7682a80.js"><link rel="prefetch" href="/sz-docs/assets/js/13.b40896ae.js"><link rel="prefetch" href="/sz-docs/assets/js/14.7d6cdd2a.js"><link rel="prefetch" href="/sz-docs/assets/js/15.96809982.js"><link rel="prefetch" href="/sz-docs/assets/js/16.9183fc9e.js"><link rel="prefetch" href="/sz-docs/assets/js/17.ecc2fb02.js"><link rel="prefetch" href="/sz-docs/assets/js/18.cbb699f8.js"><link rel="prefetch" href="/sz-docs/assets/js/19.be221f77.js"><link rel="prefetch" href="/sz-docs/assets/js/20.2607d007.js"><link rel="prefetch" href="/sz-docs/assets/js/21.88cceb8e.js"><link rel="prefetch" href="/sz-docs/assets/js/23.5e12ff82.js"><link rel="prefetch" href="/sz-docs/assets/js/24.1bf305f2.js"><link rel="prefetch" href="/sz-docs/assets/js/25.6acd278f.js"><link rel="prefetch" href="/sz-docs/assets/js/26.1cf25fe7.js"><link rel="prefetch" href="/sz-docs/assets/js/27.45c79ed2.js"><link rel="prefetch" href="/sz-docs/assets/js/28.0b61871a.js"><link rel="prefetch" href="/sz-docs/assets/js/29.cad72530.js"><link rel="prefetch" href="/sz-docs/assets/js/3.79377ed2.js"><link rel="prefetch" href="/sz-docs/assets/js/30.579adef3.js"><link rel="prefetch" href="/sz-docs/assets/js/31.5b8d686b.js"><link rel="prefetch" href="/sz-docs/assets/js/32.cd1a7df8.js"><link rel="prefetch" href="/sz-docs/assets/js/33.08291efa.js"><link rel="prefetch" href="/sz-docs/assets/js/34.051cd83e.js"><link rel="prefetch" href="/sz-docs/assets/js/35.9226c874.js"><link rel="prefetch" href="/sz-docs/assets/js/36.786d1b02.js"><link rel="prefetch" href="/sz-docs/assets/js/37.6c82cb08.js"><link rel="prefetch" href="/sz-docs/assets/js/38.cb3a3a25.js"><link rel="prefetch" href="/sz-docs/assets/js/39.6106e297.js"><link rel="prefetch" href="/sz-docs/assets/js/4.da3ef268.js"><link rel="prefetch" href="/sz-docs/assets/js/40.c6403136.js"><link rel="prefetch" href="/sz-docs/assets/js/41.7426ccdd.js"><link rel="prefetch" href="/sz-docs/assets/js/42.dde98d37.js"><link rel="prefetch" href="/sz-docs/assets/js/43.d71415f0.js"><link rel="prefetch" href="/sz-docs/assets/js/44.6e365644.js"><link rel="prefetch" href="/sz-docs/assets/js/45.2d67f6fc.js"><link rel="prefetch" href="/sz-docs/assets/js/46.85a0827b.js"><link rel="prefetch" href="/sz-docs/assets/js/47.3314ed73.js"><link rel="prefetch" href="/sz-docs/assets/js/48.9cf9a0ad.js"><link rel="prefetch" href="/sz-docs/assets/js/49.1761cc9c.js"><link rel="prefetch" href="/sz-docs/assets/js/5.dac787d8.js"><link rel="prefetch" href="/sz-docs/assets/js/50.6a10f71e.js"><link rel="prefetch" href="/sz-docs/assets/js/51.e2c36d0f.js"><link rel="prefetch" href="/sz-docs/assets/js/52.1bd7b444.js"><link rel="prefetch" href="/sz-docs/assets/js/53.70686b59.js"><link rel="prefetch" href="/sz-docs/assets/js/54.6dde35b4.js"><link rel="prefetch" href="/sz-docs/assets/js/55.b6e40a11.js"><link rel="prefetch" href="/sz-docs/assets/js/56.c3e28e98.js"><link rel="prefetch" href="/sz-docs/assets/js/57.574a0481.js"><link rel="prefetch" href="/sz-docs/assets/js/58.521c3bdd.js"><link rel="prefetch" href="/sz-docs/assets/js/59.857ad7b7.js"><link rel="prefetch" href="/sz-docs/assets/js/6.2d0a63f8.js"><link rel="prefetch" href="/sz-docs/assets/js/60.92b7cad7.js"><link rel="prefetch" href="/sz-docs/assets/js/61.22b06999.js"><link rel="prefetch" href="/sz-docs/assets/js/62.6e97315b.js"><link rel="prefetch" href="/sz-docs/assets/js/63.51574388.js"><link rel="prefetch" href="/sz-docs/assets/js/7.307492ca.js"><link rel="prefetch" href="/sz-docs/assets/js/8.2b132dc4.js"><link rel="prefetch" href="/sz-docs/assets/js/9.3c5a8fdb.js">
+    <link rel="stylesheet" href="/sz-docs/assets/css/0.styles.677476a9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/sz-docs/" class="home-link router-link-active"><!----> <span class="site-name">生椰拿铁</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/sz-docs/guide/" class="nav-link router-link-active">
+  Guide
+</a></div><div class="nav-item"><a href="/sz-docs/config/" class="nav-link">
+  Config
+</a></div><div class="nav-item"><a href="https://v1.vuepress.vuejs.org" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VuePress
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/sz-docs/guide/" class="nav-link router-link-active">
+  Guide
+</a></div><div class="nav-item"><a href="/sz-docs/config/" class="nav-link">
+  Config
+</a></div><div class="nav-item"><a href="https://v1.vuepress.vuejs.org" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VuePress
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>什么是Deno</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/sz-docs/guide/什么是Deno.html" class="sidebar-link">简介</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="typescript的类型系统"><a href="#typescript的类型系统" class="header-anchor">#</a> TypeScript的类型系统</h2> <p>TypeScript给JavaScript增加了一套静态类型系统，通过 TS Compiler 编译为 JS，编译的过程做类型检查。</p> <p>它并没有改变 JavaScript 的语法，只是在 JS 的基础上添加了类型语法，所以被叫做 JavaScript 的超集。</p> <p>JavaScript 的标准在不断的发展，TypeScript 的类型系统也在不断完善，因为“超集”的设计理念，这两者可以很好的融合在一起，是不会有冲突的。</p> <p>静态类型编程语言都有自己的类型系统，从简单到复杂可以分为 3 类：</p> <h3 id="简单类型系统"><a href="#简单类型系统" class="header-anchor">#</a> 简单类型系统</h3> <p>变量、函数、类等都可以声明类型，编译器会基于声明的类型做类型检查，类型不匹配时编译器会报错。</p> <p>这是最基础的类型系统，能保证类型安全，但有些死板。</p> <p>比如一个 <code>identify</code> 函数，我们希望这个函数传入什么值可以原封不动的返回，如果我们想要传入的类型为 <code>number</code>或者<code>string</code>的话，我们需要这样写：</p> <div class="language- extra-class"><pre class="language-text"><code>function identify(x: number | string): 
+  number | string {
+  return x;
+}
+
+const res123 = identify(1);
+</code></pre></div><p>如果我们还想传入<code>boolean</code>类型的话：</p> <div class="language- extra-class"><pre class="language-text"><code>function identify(x: number | string | boolean): 
+  number | string | boolean {
+  return x;
+}
+
+const res123 = identify(false);
+</code></pre></div><p>这样的话就会出现一个问题：每次传入一个新的类型就必须得重新修改函数的参数与返回值类型。</p> <p>如果类型能传参数就好了，传入<code>number</code>就会返回<code>number</code>，传入<code>string</code>就返回<code>string</code>。</p> <p>所以有了第二种类型系统。</p> <h3 id="支持泛型的类型系统"><a href="#支持泛型的类型系统" class="header-anchor">#</a> 支持泛型的类型系统</h3> <p>泛型的英文是Generic Type，译为‘通用的类型’，它可以表示任何一种类型，也可以叫<strong>类型参数</strong>。</p> <p>比如上面的例子，有了泛型之后我们可以这样写：</p> <div class="language- extra-class"><pre class="language-text"><code>function identify(x: T): T {
+  return x;
+}
+
+identify(true);
+identify(3.1415926);
+identify('我不是string');
+</code></pre></div><p><strong>声明时把会变化的类型声明成泛型（也就是类型参数），在调用的时候再确定类型。</strong></p> <p>很多语言，类如Java、Dart等用的就是这种类型系统，泛型确实是一个可以很好地增加类型系统灵活性的特性。</p> <p>但是，这种类型系统的灵活性对于 JavaScript 来说还不够，因为 JavaScript 太过灵活了。</p> <p>比如，在 Java 里，对象都是由类 new 出来的，你不能凭空创建对象，但是 JavaScript 却可以，它支持对象字面量。</p> <p>那如果是一个返回对象某个属性值的函数，类型该怎么写呢？</p> <div class="language- extra-class"><pre class="language-text"><code>function getPropValue(obj: T, key: string) {
+    return obj[key];
+}
+
+const res = getPropValue({a: 1, b: 2}, 'a');
+</code></pre></div><p><img src="https://pan.udolphin.com/files/image/2022/3/812c6e73b37924038d7515279133b741.png" alt="泛型"></p> <p>我们可以看到类型返回值为<code>any</code>。</p> <p>好像拿到了<code>T</code>也拿不到它的属性值与属性值，如果我们可以对类型参数<code>T</code>做一些处理就好了。</p> <p>所以，有了第三种类型系统。</p> <h3 id="支持类型编程的类型系统"><a href="#支持类型编程的类型系统" class="header-anchor">#</a> 支持类型编程的类型系统</h3> <p>在 Java 里面，拿到了对象的类型就能找到它的类，进一步拿到各种信息，所以类型系统支持泛型就足够了。</p> <p>但是在 JavaScript 里面，对象可以字面量的方式创建，还可以灵活的增删属性，拿到对象并不能确定什么，所以要支持对传入的类型参数做进一步的处理。</p> <p>对传入的类型参数（泛型）做各种逻辑运算，产生新的类型，这就是类型编程。</p> <p>比如上面那个 getProps 的函数，类型可以这样写：</p> <div class="language- extra-class"><pre class="language-text"><code>function getPropValue&lt;T extends object, Key extends keyof T&gt;(
+  obj: T, key: Key): T[Key] {
+    return obj[key];
+}
+
+const res1 = getPropValue({a: 1, b: 2}, 'a');
+</code></pre></div><p><img src="https://pan.udolphin.com/files/image/2022/3/d326adb00540b1e26c7f6d4bc7cc035f.png" alt="类型编程"></p> <p>这里我们成功地拿到了返回值的类型！</p> <p>这里的 <code>keyof T</code>、<code>T[Key]</code> 就是对类型参数 <code>T</code> 的类型运算。</p> <p>TypeScript 的类型系统就是第三种，支持对类型参数做各种逻辑处理，可以写很复杂的类型逻辑。</p> <h3 id="类型逻辑能有多复杂"><a href="#类型逻辑能有多复杂" class="header-anchor">#</a> 类型逻辑能有多复杂？</h3> <blockquote><p>类型逻辑是对类型参数的各种处理，可以实现很多强大的功能。</p></blockquote> <p>比如这个 <code>ParseQueryString</code> 的类型：</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/04f6d4a9ae4181d2b6a995fa52a50d86.png" alt="ParseQueryString"></p> <p>它可以对传入的字符串的类型参数做解析，返回解析以后的结果。</p> <p>如果是一些只支持泛型的类型系统是不能做到这一点的。但是 TypeScript 的类型系统就可以，因为它可以对泛型（类型参数）做各种逻辑处理。</p> <p>只不过，这个类型的类型逻辑的代码比较多：</p> <blockquote><p>下面的 <code>ts</code> 类型暂时看不懂没关系，这里只是展示一下TS类型编程的复杂度，相信大家在看完这篇文章之后也可以实现这样的复杂类型。</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>type ParseParam = 
+    Param extends `${infer Key}=${infer Value}`
+        ? {
+            [K in Key]: Value 
+        } : {};
+
+type MergeValues = 
+    One extends Other 
+        ? One
+        : Other extends unknown[]
+            ? [One, ...Other]
+            : [One, Other];
+
+type MergeParams&lt;
+    OneParam extends Record,
+    OtherParam extends Record
+&gt; = {
+  [Key in keyof OneParam | keyof OtherParam]: 
+    Key extends keyof OneParam
+        ? Key extends keyof OtherParam
+            ? MergeValues
+            : OneParam[Key]
+        : Key extends keyof OtherParam 
+            ? OtherParam[Key] 
+            : never
+}
+
+type ParseQueryString = 
+    Str extends `${infer Param}&amp;${infer Rest}`
+        ? MergeParams, ParseQueryString&gt;
+        : ParseParam;
+</code></pre></div><p>对类型参数的编程是 TypeScript 类型系统最强大的部分，可以实现各种复杂的类型计算逻辑，是它的优点。但同时也被认为是它的缺点，因为除了业务逻辑外还要写很多类型逻辑。</p> <p>不过，我倒是觉得这种复杂度是不可避免的，因为 JS 本身足够灵活，要准确定义类型那类型系统必然也要设计的足够灵活。</p> <h2 id="typescript类型系统中的类型"><a href="#typescript类型系统中的类型" class="header-anchor">#</a> TypeScript类型系统中的类型</h2> <p>静态类型系统的目的是把类型检查从运行时提前到编译时，那 TS 类型系统中肯定要把 JS 的运行时类型拿过来，也就是 <code>number、boolean、string、object、bigint、symbol、undefined、null</code> 这些类型，还有就是它们的包装类型 <code>Number、Boolean、String、Object、Symbol。</code></p> <p>引用类型方面，JS 有 class、Array，这些 TypeScript 类型系统也都支持，但是又多加了三种类型：元组（Tuple）、接口（Interface）、枚举（Enum）。</p> <h3 id="元组"><a href="#元组" class="header-anchor">#</a> 元组</h3> <p><code>元组(Tuple)</code>就是元素个数和类型固定的数组类型：</p> <div class="language- extra-class"><pre class="language-text"><code>type Tuple = [number, string];
+</code></pre></div><h3 id="接口"><a href="#接口" class="header-anchor">#</a> 接口</h3> <p><code>接口(Interface)</code>可以描述对象、函数、构造器的结构：</p> <h4 id="对象"><a href="#对象" class="header-anchor">#</a> 对象</h4> <div class="language- extra-class"><pre class="language-text"><code>interface IPerson {
+    name: string;
+    age: number;
+}
+
+class Person implements IPerson {
+    name: string;
+    age: number;
+}
+
+const obj: IPerson = {
+    name: 'h',
+    age: 18
+}
+</code></pre></div><h4 id="函数"><a href="#函数" class="header-anchor">#</a> 函数</h4> <div class="language- extra-class"><pre class="language-text"><code>interface SayHello {
+    (name: string): string;
+}
+
+const func: SayHello = (name: string) =&gt; {
+    return 'hello,' + name
+}
+</code></pre></div><h4 id="构造器"><a href="#构造器" class="header-anchor">#</a> 构造器</h4> <div class="language- extra-class"><pre class="language-text"><code>interface PersonConstructor {
+    new (name: string, age: number): IPerson;
+}
+
+function createPerson(ctor: PersonConstructor): IPerson {
+    return new ctor('a', 18);
+}
+</code></pre></div><p>对象类型、class 类型在 TypeScript 里也叫做索引类型，也就是索引了多个元素的类型的意思。对象可以动态添加属性，如果不知道会有什么属性，可以用可索引签名：</p> <div class="language- extra-class"><pre class="language-text"><code>interface IPerson {
+    [prop: string]: string | number;
+}
+
+const obj: IPerson = {};
+
+obj.name = 'i';
+obj.age = 18;
+</code></pre></div><p>总之，接口可以用来描述函数、构造器、索引类型（对象、class、数组）等复合类型。</p> <h3 id="枚举"><a href="#枚举" class="header-anchor">#</a> 枚举</h3> <p>枚举（Enum）是一系列值的复合：</p> <div class="language- extra-class"><pre class="language-text"><code>enum Transpiler {
+    Babel = 'babel',
+    Postcss = 'postcss',
+    Terser = 'terser',
+    Prettier = 'prettier',
+    TypeScriptCompiler = 'tsc'
+}
+
+const transpiler = Transpiler.TypeScriptCompiler;
+</code></pre></div><p>此外，<code>TypeScript</code> 还支持字面量类型，也就是类似 <code>1111</code>、<code>'aaaa'</code>、<code>{ a: 1 }</code> 这种值也可以做为类型。</p> <p>还有四种特殊的类型：<code>void、never、any、unknown</code>：</p> <ul><li><code>void</code> 代表空，可以是 <code>null</code> 或者 <code>undefined</code>，一般是用于函数返回值。</li> <li><code>any</code> 是任意类型，任何类型都可以赋值给它，它也可以赋值给任何类型（除了 <code>never</code>）。</li> <li><code>unknown</code> 是未知类型，任何类型都可以赋值给它，但是它不可以赋值给别的类型。</li> <li><code>never</code> 代表不可达，比如函数抛异常的时候，返回值就是 <code>never</code>。</li></ul> <p>这些就是 <code>TypeScript</code> 类型系统中的全部类型了，大部分是从 <code>JS</code> 中迁移过来的，比如基础类型、- <code>Array、class</code> 等，也添加了一些类型，比如 枚举（<code>enum</code>）、接口（<code>interface</code>）、元组等，还支持了字面量类型和 <code>void、never、any、unknown</code> 的特殊类型。</p> <h3 id="类型的装饰"><a href="#类型的装饰" class="header-anchor">#</a> 类型的装饰</h3> <p><code>TypeScript</code>还支持描述类型的属性，比如是否可选，是否只读等：</p> <div class="language- extra-class"><pre class="language-text"><code>interface IPerson {
+    readonly name: string;
+    age?: number;
+}
+
+type tuple = [string, number?];
+</code></pre></div><p>接下来我们进入一个重点，大家以后去解包一些类型都是以下一章讲的这些Api为基础来进行的。</p> <h3 id="typescript-类型系统中的类型运算"><a href="#typescript-类型系统中的类型运算" class="header-anchor">#</a> TypeScript 类型系统中的类型运算</h3> <h4 id="条件类型-extends"><a href="#条件类型-extends" class="header-anchor">#</a> 条件类型: extends ?</h4> <p>条件类型语法类似与JS的三元表达式：</p> <div class="language- extra-class"><pre class="language-text"><code>type res = 1 extends 2 ? true : false;
+
+type isTwo = T extends 2 ? true: false;
+
+type res1 = isTwo&lt;1&gt;;
+type res2 = isTwo&lt;2&gt;;
+</code></pre></div><p>结果<br> <img src="https://pan.udolphin.com/files/image/2022/3/f6112e41cf5d8e260602b38983bd1e39.png" alt="res1"></p> <p><img src="https://pan.udolphin.com/files/image/2022/3/48e12f4c2457eac834cb66f14dd020a4.png" alt="res2"></p> <p>这种类型也叫<strong>高级类型</strong></p> <p><strong>高级类型的特点是传入类型参数，经过运算之后返回一个新的类型。</strong></p> <h4 id="推导类型-infer"><a href="#推导类型-infer" class="header-anchor">#</a> 推导类型: infer</h4> <p>推导类型的关键字为<code>infer</code>，作用类似与是声明一个局部变量，获取类型的某一部分。</p> <p>例，获取元组中第一个属性的类型：</p> <div class="language- extra-class"><pre class="language-text"><code>  type First = Tuple extends [infer T, ...unknown[]] ? T : never;
+
+  type res = First&lt;[1, 2, 3]&gt;;
+</code></pre></div><p><code>res</code>类型为：</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/ecfffc0ee17d1553ba16d5682ab17f15.png" alt="infer"></p> <p><strong>注意</strong>：这里的在等式左边有一个<code>Tuple extends unknown[]</code>这里的<code>extends</code>关键字并不是条件类型，条件类型是：<code>extends ? :</code>，这里的意思是约束类型参数（泛型）只能是数组类型。</p> <p>PS：因为不知道数组元素的具体类型，所以使用<code>unknown</code>。</p> <h4 id="联合类型"><a href="#联合类型" class="header-anchor">#</a> 联合类型: |</h4> <p>联合类型（Union）类似 js 里的或运算符 |，但是作用于类型，代表类型可以是几个类型之一。</p> <div class="language- extra-class"><pre class="language-text"><code>type Union = 1 | 2 | 3;
+</code></pre></div><h4 id="交叉类型"><a href="#交叉类型" class="header-anchor">#</a> 交叉类型: &amp;</h4> <p>交叉类型（Intersection）类似 js 中的与运算符 <code>&amp;</code>，但是作用于类型，代表对类型做合并。</p> <div class="language- extra-class"><pre class="language-text"><code>type ObjType = {a: number } &amp; {c: boolean};
+</code></pre></div><p><img src="https://pan.udolphin.com/files/image/2022/3/89f6be00f2c47b5dd832ae4e575e553a.png" alt="交叉"></p> <p><strong>注意</strong>：同一类型可以合并，不同的类型没法合并，会被舍弃：</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/0c85490c2febbe40b38ba0787c94bb10.png" alt="舍弃"></p> <h4 id="映射类型"><a href="#映射类型" class="header-anchor">#</a> 映射类型</h4> <p>对象、class在TypeScript对应的类型是索引类型，那么如何对索引类型修改呢？</p> <p>答案就是<strong>映射类型</strong>。</p> <div class="language- extra-class"><pre class="language-text"><code>type MapType = {
+  [Key in keyof T]?: T[Key]
+}
+</code></pre></div><p>其中涉及到三个关键字：</p> <ol><li><code>keyof T</code> 是查询索引类型中所有的索引，叫做<strong>索引查询</strong>。</li> <li><code>T[Key]</code> 是取索引类型某个索引的值，叫做<strong>索引访问</strong>。</li> <li><code>in</code> 是用于遍历联合类型的运算符。</li></ol> <p>比如我们把一个索引类型的值变成一个字符串：</p> <div class="language- extra-class"><pre class="language-text"><code>type MapType = {
+    [Key in keyof T]: 'hello world'
+}
+
+type res = MapType&lt;{a: 1, b: 2}&gt;;
+</code></pre></div><p><img src="https://pan.udolphin.com/files/image/2022/3/045b8f1b097111d73ed4b9b20956ac3d.png" alt=""></p> <p>映射类型就相当于把一个集合映射到另一个集合，这是它名字的由来。</p> <p>除了值可以变化，索引也可以变化：</p> <div class="language- extra-class"><pre class="language-text"><code>type MapType = {
+    [
+        Key in keyof T 
+            as `${Key &amp; string} qq`
+    ]: T[Key]
+  };
+
+type res = MapType&lt;{'1': 1, '2': 2}&gt;;
+</code></pre></div><p><img src="https://pan.udolphin.com/files/image/2022/3/3798e7d84077cae3f548ff8c53914eb4.png" alt="索引映射"></p> <p>我们用 as 把索引也做了修改，改成了原本的Key后加一个‘ qq’</p> <h4 id="小结"><a href="#小结" class="header-anchor">#</a> 小结</h4> <p>给 JavaScript 添加静态类型系统，那肯定是能复用的就复用，所以在 TypeScript 里，基础类型和 class、Array 等复合类型都是和 JavaScript 一样的，只是又额外加了接口（interface）、枚举（enum）、元组这三种复合类型（对象类型、class 类型在 TypeScript 里叫做索引类型），还有 void、never、any、unkown 四种特殊类型，以及支持字面量做为类型。此外，TypeScript 类型系统也支持通过 readonly、？等修饰符对属性的特性做进一步的描述。</p> <p>此外，TypeScript 支持对类型做运算，这是它的类型系统的强大之处，也是复杂之处。</p> <p>TypeScript 支持条件、推导、联合、交叉等运算逻辑，还有对联合类型做映射。</p> <p>这些逻辑是针对类型参数，也就是泛型（类型参数）来说的，传入类型参数，经过一系列类型运算逻辑后，返回新的类型的类型就叫做高级类型，如果是静态的值，直接算出结果即可，没必要写类型逻辑。</p> <p>这些语法看起来没有多复杂，但是他们却可以实现很多复杂逻辑，就像 JS 的语法也不复杂，却可以实现很多复杂逻辑一样。</p> <p>后面我们会大量用到这些类型编程语法来实现各种复杂的类型逻辑。</p> <h2 id="编写类型技巧"><a href="#编写类型技巧" class="header-anchor">#</a> 编写类型技巧</h2> <blockquote><p>TypeScript 类型编程的代码看起来比较复杂，但其实这些逻辑用 JS 大家都会写，之所以到了类型体操就不会了，那是因为还不熟悉一些套路。<br>
+所以，这节开始我们就来学习一些类型编程的套路，熟悉这些套路之后，各种类型体操逻辑就能够很顺畅的写出来。</p></blockquote> <p>首先，我们来学习类型编程的第一个套路：<br>
+模式匹配。</p> <h3 id="模式匹配"><a href="#模式匹配" class="header-anchor">#</a> 模式匹配</h3> <p>我们知道，字符串可以和正则做模式匹配，找到匹配的部分，提取子组，之后可以用 1,1,2 等引用匹配的子组。</p> <p>Typescript 的类型也同样可以做模式匹配。</p> <p>比如这样一个 Promise 类型：</p> <div class="language- extra-class"><pre class="language-text"><code>type p = Promise&lt;'haha'&gt;;
+</code></pre></div><p>我们想提取 value 的类型，可以这样做：</p> <div class="language- extra-class"><pre class="language-text"><code>type GetValueType = P extends Promise ? Value : never;
+</code></pre></div><p>通过 extends 对传入的类型参数 P 做模式匹配，其中值的类型是需要提取的，通过 infer 声明一个局部变量 Value 来保存，如果匹配，就返回匹配到的 Value，否则就返回 never 代表没匹配到。</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/a7e2782c61ff0db18c9782f034f9c1ee.png" alt="GetValueType"></p> <p>这就是 Typescript 类型的模式匹配：</p> <p>Typescript 类型的模式匹配是通过 extends 对类型参数做匹配，结果保存到通过 infer 声明的局部类型变量里，如果匹配就能从该局部变量里拿到提取出的类型。</p> <p>这个模式匹配的套路有多有用呢？我们来看下在数组、函数等类型里的应用。</p> <h4 id="数组"><a href="#数组" class="header-anchor">#</a> 数组</h4> <h5 id="last"><a href="#last" class="header-anchor">#</a> Last</h5> <p>前几章我们介绍了获取数组第一个元素的First，既然可以提取第一个元素，当然也可以提取最后一个元素，修改下模式类型就行：</p> <div class="language- extra-class"><pre class="language-text"><code>type arr = [1,2,3]
+
+type Last = T extends [...unknown[], infer U] ? U : never;
+
+type Ans = Last;
+</code></pre></div><p><img src="https://pan.udolphin.com/files/image/2022/3/b41afc9496f5ec4ab3883fec1db4f417.png" alt="last"></p> <h4 id="函数-2"><a href="#函数-2" class="header-anchor">#</a> 函数</h4> <h5 id="getparameters"><a href="#getparameters" class="header-anchor">#</a> GetParameters</h5> <p>类型参数 Func 是要匹配的函数类型，通过 extends 约束为 Function。</p> <p>Func 和模式类型做匹配，参数类型放到用 infer 声明的局部变量 T 里，返回值可以是任何类型。</p> <p>返回提取到的参数类型 AnsFunc</p> <div class="language- extra-class"><pre class="language-text"><code>type GetParameters = Func extends (...args: infer T)=&gt; any ? T : never;
+
+type AnsFunc = GetParameters&lt;(a: number, b: string) =&gt; void&gt;; 
+</code></pre></div><p><img src="https://pan.udolphin.com/files/image/2022/3/34a53710fce426f65b34ff359dc011c5.png" alt="GetParameters"></p> <h5 id="getreturntype"><a href="#getreturntype" class="header-anchor">#</a> GetReturnType</h5> <p>能提取参数类型，同样也可以提取返回值类型：</p> <div class="language- extra-class"><pre class="language-text"><code>type GetReturnType = 
+    Func extends (...args: any[]) =&gt; infer ReturnType 
+        ? ReturnType : never;
+
+type AnsRT = GetReturnType&lt;(a: number, b: string) =&gt; number | string&gt;;
+</code></pre></div><p><code>Func</code> 和模式类型做匹配，提取返回值到通过 <code>infer</code> 声明的局部变量 <code>ReturnType</code> 里返回。</p> <p>参数类型可以是任意类型，也就是 <code>any[]</code>（注意，这里不能用 <code>unknown</code>，因为参数类型是要赋值给别的类型的，而 <code>unknown</code> 只能用来接收类型，所以用 <code>any</code>）。</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/e3852b2be702cd445dee61395579f6cf.png" alt="GetReturnType"></p> <h3 id="重新构造"><a href="#重新构造" class="header-anchor">#</a> 重新构造</h3> <p>类型编程主要的目的就是对类型做各种转换，那么如何对类型做修改呢？</p> <p><code>TypeScript</code> 类型系统支持 3 种可以声明任意类型的变量： type、infer、类型参数。</p> <p>type 叫做类型别名，其实就是声明一个变量存储某个类型：</p> <div class="language- extra-class"><pre class="language-text"><code>type ttt = Promise;
+</code></pre></div><p>infer 用于类型的提取，然后存到一个变量里，相当于局部变量：</p> <div class="language- extra-class"><pre class="language-text"><code>type GetValueType = P extends Promise ? Value : never;
+</code></pre></div><p>类型参数用于接受具体的类型，在类型运算中也相当于局部变量：</p> <div class="language- extra-class"><pre class="language-text"><code>type isTwo = T extends 2 ? true: false;
+</code></pre></div><p>但是，严格来说这三种也都不叫变量，因为它们不能被重新赋值。</p> <p>TypeScript 设计可以做类型编程的类型系统的目的就是为了产生各种复杂的类型，那不能修改怎么产生新类型呢？</p> <p>答案是重新构造。</p> <h4 id="数组-2"><a href="#数组-2" class="header-anchor">#</a> 数组</h4> <h5 id="push"><a href="#push" class="header-anchor">#</a> Push</h5> <p>有这样一个元组类型：</p> <div class="language- extra-class"><pre class="language-text"><code>type tuple = [1,2,3];
+</code></pre></div><p>我想给这个元组类型再添加一些类型，怎么做呢？</p> <p>TypeScript 类型变量不支持修改，我们可以构造一个新的元组类型：</p> <div class="language- extra-class"><pre class="language-text"><code>type Push = [...Arr, Ele];
+</code></pre></div><p>类型参数 <code>Arr</code> 是要修改的数组/元组类型，元素的类型任意，也就是 <code>unknown</code>。</p> <p>类型参数 <code>Ele</code> 是添加的元素的类型。</p> <p>返回的是用 <code>Arr</code> 已有的元素加上 <code>Ele</code> 构造的新的元组类型。</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/9846d9e49553d5e3a310dd45d535f29a.png" alt="Push"></p> <h4 id="字符串"><a href="#字符串" class="header-anchor">#</a> 字符串</h4> <h5 id="capitalizestr"><a href="#capitalizestr" class="header-anchor">#</a> CapitalizeStr</h5> <p>我们想把一个字符串字面量类型的 <code>'hello'</code> 转为首字母大写的 'Hello'。</p> <p>需要用到字符串类型的提取和重新构造：</p> <div class="language- extra-class"><pre class="language-text"><code>type CapitalizeStr = 
+    Str extends `${infer First}${infer Rest}` 
+        ? `${Uppercase}${Rest}` : Str;
+
+type AnsStr = CapitalizeStr&lt;'hello'&gt;;
+</code></pre></div><p>我们声明了类型参数 Str 是要处理的字符串类型，通过 extends 约束为 string。</p> <p>通过 infer 提取出首个字符到局部变量 First，提取后面的字符到局部变量 Rest。</p> <p>然后使用 TypeScript 提供的内置高级类型 Uppercase 把首字母转为大写，加上 Rest，构造成新的字符串类型返回。</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/9be59b5f134ab564eca5dd1ff7085c1a.png" alt="CapitalizeStr"></p> <h3 id="特性"><a href="#特性" class="header-anchor">#</a> 特性</h3> <p>TypeScript 类型系统中有些类型比较特殊，比如 any、never、联合类型，比如 class 有 public、protected、private 的属性，比如索引类型有具体的索引和可索引签名，索引还有可选和非可选。。。</p> <p>如果给我们一种类型让我们判断是什么类型，应该怎么做呢？</p> <h4 id="isany"><a href="#isany" class="header-anchor">#</a> IsAny</h4> <p>如何判断一个类型是 <code>any</code> 类型呢？要根据它的特性来：</p> <p><code>any</code> 类型与除<code>never</code>之外的任何类型的交叉都是 <code>any</code>，也就是 <code>1 &amp; any</code> 结果是 <code>any</code>。</p> <p>所以，可以这样写：</p> <div class="language- extra-class"><pre class="language-text"><code>type IsAny = 'T' extends ('S' &amp; T) ? true : false
+</code></pre></div><p>这里的 <code>'T'</code> 和 <code>'S'</code> 可以换成任意类型。</p> <p>当传入 <code>any</code> 时：<br> <img src="https://pan.udolphin.com/files/image/2022/3/892e06644df96bd886d7df8eb09626f6.png" alt=""></p> <p>当传入其他类型时：<br> <img src="https://pan.udolphin.com/files/image/2022/3/a87849bcccfef24c1df38c71bd08c230.png" alt=""></p> <h4 id="isnever"><a href="#isnever" class="header-anchor">#</a> IsNever</h4> <p><code>never</code> 在条件类型中也比较特殊，如果条件类型左边是类型参数，并且传入的是 <code>never</code>，那么直接返回 <code>never</code>：</p> <div class="language- extra-class"><pre class="language-text"><code>type TestNever = T extends never ? true : false;
+</code></pre></div><p>当 <code>T</code> 为 <code>never</code> 时：</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/6a385b3980c4a8479eb27b13ab2e3594.png" alt="TestNever"></p> <p>所以，要判断 <code>never</code> 类型，就不能直接 <code>T extends never</code>，可以这样写：</p> <div class="language- extra-class"><pre class="language-text"><code>type IsNever = [T] extends [never] ? true : false
+</code></pre></div><p>这样就能正常判断 never 类型了：</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/5d0eca65dfeba3b9aec33a9932f56235.png" alt="isNever"></p> <h4 id="getoptional"><a href="#getoptional" class="header-anchor">#</a> GetOptional</h4> <p>如何提取索引类型中的可选索引呢？</p> <p>这也要利用可选索引的特性：可选索引的值为 <code>undefined</code> 和值类型的联合类型。</p> <p>过滤可选索引，就要构造一个新的索引类型，过程中做过滤：</p> <div class="language- extra-class"><pre class="language-text"><code>type GetOptional&gt; = {
+    [
+        Key in keyof Obj 
+            as {} extends Pick ? Key : never
+    ] : Obj[Key];
+}
+
+type res = GetOptional&lt;{a?: 1, b: 2}&gt;;
+</code></pre></div><p>类型参数 <code>Obj</code> 为待处理的索引类型，类型约束为索引为 <code>string</code>、值为任意类型的索引类型 <code>Record&lt;string, any&gt;</code>。</p> <p>用映射类型的语法重新构造索引类型，索引是之前的索引也就是 <code>Key in keyof Obj</code>，但要做一些过滤，也就是 <code>as</code> 之后的部分。</p> <p>过滤的方式就是单独取出该索引之后，判断空对象是否是其子类型。</p> <p>这里的 <code>Pick</code> 是 <code>ts</code> 提供的内置高级类型，就是取出某个 Key 构造新的索引类型：</p> <div class="language- extra-class"><pre class="language-text"><code>type Pick&lt;T, K extends keyof T&gt; = { [P in K]: T[P]; }
+</code></pre></div><p>因为 <code>a</code> 可能为 <code>undefined</code>，也就是索引类型可能是 <code>{}</code>，所以 <code>{} extends Pick&lt;Obj, Key&gt;</code> 就能过滤出可选索引。（可选的意思就是有或者没有，没有的时候就是空的索引类型）</p> <p>值的类型依然是之前的，也就是 <code>Obj[Key]</code>。</p> <p>这样，就能过滤出所有可选索引，构造成新的索引类型：</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/10d144f3d6719da2705d87250db2e55f.png" alt="GetOptional"></p> <h2 id="typescript内置高级类型"><a href="#typescript内置高级类型" class="header-anchor">#</a> TypeScript内置高级类型</h2> <h3 id="parameters"><a href="#parameters" class="header-anchor">#</a> Parameters</h3> <p>Parameters 用于提取函数类型的参数类型。</p> <p>源码是这样的：</p> <div class="language- extra-class"><pre class="language-text"><code>type Parameters&lt;T extends (...args: any) =&gt; any&gt; = T extends (...args: infer P) =&gt; any ? P : never;
+</code></pre></div><p>类型参数 T 为待处理的类型，通过 extends 约束为函数，参数和返回值任意。</p> <p>通过 extends 匹配一个模式类型，提取参数的类型到 infer 声明的局部变量 P 中返回。</p> <p>这样就实现了函数参数类型的提取：</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/9b8a6a671a491c4734bfb412b9c391d5.png" alt="Parameters"></p> <h3 id="returntype"><a href="#returntype" class="header-anchor">#</a> ReturnType</h3> <p>ReturnType 用于提取函数类型的返回值类型。</p> <p>源码是这样的：</p> <div class="language- extra-class"><pre class="language-text"><code>type ReturnType&lt;T extends (...args: any) =&gt; any&gt; = T extends (...args: any) =&gt; infer R ? R : any;
+</code></pre></div><p>类型参数 T 为待处理的类型，通过 extends 约束为函数类型，参数和返回值任意。</p> <p>用 T 匹配一个模式类型，提取返回值的类型到 infer 声明的局部变量 R 里返回。</p> <p>这样就实现了函数返回值类型的提取：</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/4450db68c428e9aad9854fae25d520d9.png" alt="ReturnType"></p> <h3 id="constructorparameters"><a href="#constructorparameters" class="header-anchor">#</a> ConstructorParameters</h3> <p>构造器类型和函数类型的区别就是可以被 new。</p> <p><code>Parameters</code> 用于提取函数参数的类型，而 <code>ConstructorParameters</code> 用于提取构造器参数的类型。</p> <p>源码是这样的：</p> <div class="language- extra-class"><pre class="language-text"><code>type ConstructorParameters&lt;T extends abstract new (...args: any) =&gt; any&gt; = T extends abstract new (...args: infer P) =&gt; any ? P : never;
+</code></pre></div><p>类型参数 <code>T</code> 是待处理的类型，通过 <code>extends</code> 约束为构造器类型，加个 <code>abstract</code> 代表不能直接被实例化（其实不加也行）。</p> <p>用 <code>T</code> 匹配一个模式类型，提取参数的部分到 <code>infer</code> 声明的局部变量 <code>P</code> 里，返回 <code>P</code>。</p> <p>这样就实现了构造器参数类型的提取：</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/e933b2381b696b710fa03cb783424fd6.png" alt="ConstructorParameters"></p> <h3 id="partial"><a href="#partial" class="header-anchor">#</a> Partial</h3> <p>索引类型可以通过映射类型的语法做修改，比如把索引变为可选。</p> <div class="language- extra-class"><pre class="language-text"><code>type Partial&lt;T&gt; = {
+    [P in keyof T]?: T[P];
+};
+</code></pre></div><p>类型参数 T 为待处理的类型。</p> <p>通过映射类型的语法构造一个新的索引类型返回，索引 P 是来源于之前的 T 类型的索引，也就是 P in keyof T，索引值的类型也是之前的，也就是 T[P]。</p> <p>这样就实现了把索引类型的索引变为可选的效果：</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/0809d138e65052ce8fc26659f4483094.png" alt="Partial"></p> <h3 id="required"><a href="#required" class="header-anchor">#</a> Required</h3> <p>可以把索引变为可选，也同样可以去掉可选，也就是 <code>Required</code> 类型：</p> <div class="language- extra-class"><pre class="language-text"><code>type Required&lt;T&gt; = {
+    [P in keyof T]-?: T[P];
+};
+</code></pre></div><p>类型参数 <code>T</code> 为待处理的类型。</p> <p>通过映射类型的语法构造一个新的索引类型，索引取自之前的索引，也就是 <code>P in keyof T</code>，但是要去掉可选，也就是 <code>-?</code>，值的类型也是之前的，就是 T[P]。</p> <p>这样就实现了去掉可选修饰的目的：</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/cc07e236c4add12a403527a6c3d5e4d3.png" alt="Required"></p> <h3 id="readonly"><a href="#readonly" class="header-anchor">#</a> Readonly</h3> <p>同样的方式，也可以添加 readonly 的修饰：</p> <div class="language- extra-class"><pre class="language-text"><code>type Readonly&lt;T&gt; = {
+    readonly [P in keyof T]: T[P];
+};
+</code></pre></div><p>类型参数 T 为待处理的类型。</p> <p>通过映射类型的语法构造一个新的索引类型返回，索引和值的类型都是之前的，也就是 P in keyof T 和 T[P]，但是要加上 readonly 的修饰。</p> <p>这样就实现了加上 readonly 的目的：</p> <p><img src="https://pan.udolphin.com/files/image/2022/3/5868eec3a1b22b6bf53808054fe86502.png" alt="Readonly"></p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>虽然很多常用的高级类型TS已经内置了，但是从我个人的角度来说并不建议去死记硬背，因为掌握了TS类型编程套路的我们有很多内置类型都是可以自己去很快实现的，我们还是需要将重点放到提高类型运算中说到的Api的使用熟练度上来。</p> <p>在这里也给大家推荐一个很好用的练习网站：</p> <p><a href="https://github.com/type-challenges/type-challenges/blob/master/README.zh-CN.md" target="_blank" rel="noopener noreferrer">https://github.com/type-challenges/type-challenges/blob/master/README.zh-CN.md<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/sz-docs/assets/js/app.7db088ff.js" defer></script><script src="/sz-docs/assets/js/2.733019b2.js" defer></script><script src="/sz-docs/assets/js/22.195d0f98.js" defer></script>
+  </body>
+</html>
